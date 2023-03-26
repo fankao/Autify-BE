@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_ROOT_PASSWORD}
+    ports:
+      - "3309:3309"
+    volumes:
+      - db-data:/var/lib/mysql
+    env_file:
+      - .env
+
+  app:
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:${DB_PORT}/${DB_NAME}?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
+      JWT_SECRET_KEY: ${JWT_SECRET}
+      JWT_EXPIRATION_TIME: ${JWT_EXPIRATION}
+    ports:
+      - "8090:8090"
+    depends_on:
+      - db
+    env_file:
+      - .env
+volumes:
+  db-data:
