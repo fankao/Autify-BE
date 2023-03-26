@@ -64,5 +64,13 @@ flyway:
 6. Access the application at http://localhost:8090
 7. To stop the application and remove the containers, run the following command:<br>
    `docker-compose down`
+# Database schema
+1. `user`: Stores information about each user, such as their username, email address, and password (hashed for security).
+2. `role`: Defines different user roles, such as "admin," "manager," and "user," each with different levels of access to different parts of your application.
+3. `permission`: Defines specific permissions that can be assigned to different roles, such as "create user," "delete user," and "view user information."
+4. `session`: Stores information about each user's current session, including their session ID, login time, and IP address.
+5. `audit`: Keeps track of changes made to user data, including who made the change and when.
+6. `password_reset`: Stores information about password reset requests, including the user's email address, the reset code, and when the request was made.
+7. `refresh_token`: Stores information about refresh tokens, including the token itself, the associated user ID, and the expiration time.
 # Contributing
 Contributions are always welcome! If you'd like to contribute to Autify, please fork the repository and create a pull request with your changes.
