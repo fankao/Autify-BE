@@ -1,0 +1,59 @@
+
+# MySQL datasource configuration
+spring:
+  datasource:
+    # URL of the database, including the database name
+    url: jdbc:mysql://host.docker.internal:${DB_PORT}/${DB_NAME}?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    # Username for accessing the database
+    username: ${DB_USERNAME}
+    # Password for accessing the database
+    password: ${DB_ROOT_PASSWORD}
+    # JDBC driver class name for MySQL
+    driverClassName: com.mysql.cj.jdbc.Driver
+    # HikariCP connection pool configuration
+    hikari:
+      pool-name: MyHikariCP
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+      validation-timeout: 5000
+
+  # JPA/Hibernate configuration
+  jpa:
+    hibernate:
+      # DDL auto-generation strategy
+      ddl-auto: validate
+    properties:
+      hibernate:
+        # MySQL dialect for Hibernate
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        # Show SQL statements in logs
+        show_sql: true
+        # Format SQL statements for readability
+        format_sql: true
+
+  # Flyway database migration configuration
+  flyway:
+    # Enable Flyway database migration
+    enabled: true
+    # Location of SQL migration scripts
+    locations: classpath:db/migration
+    # Prefix for SQL migration script version numbers
+    sql-migration-prefix: V
+    # Suffix for SQL migration script filenames
+    sql-migration-suffixes: .sql
+    # Baseline version for Flyway to start from
+    baseline-version: 0
+    # Baseline the database schema if no migrations have been applied yet
+    baseline-on-migrate: true
+autify:
+  security:
+    jwtSecret: ${JWT_SECRET}
+    jwtExpireTime: ${JWT_EXPIRATION}
+server:
+  port: 8090
+  servlet:
+    context-path: /autify

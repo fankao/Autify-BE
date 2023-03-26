@@ -43,5 +43,26 @@ flyway:
   placeholders:
     key: value
 ```
+# Setup Instructions
+## Prerequisites
+ - Docker
+ - Docker Compose
+## Steps
+1. Clone the repository to your local machine.
+2. Navigate to the root directory of the cloned repository.
+3. Create a new file named .env in the root directory of the project and set the following environment variables:
+    ```text
+    DB_HOST=database
+    DB_PORT=3306
+    DB_NAME=autifydb
+    DB_USER=autifyuser
+    DB_PASSWORD=password
+    ```
+4. Run the following command in your terminal to build the Docker images and start the containers:<br>
+`docker-compose up --build`
+5. Wait for the containers to start up and the application to be deployed. 
+6. Access the application at http://localhost:8090
+7. To stop the application and remove the containers, run the following command:<br>
+   `docker-compose down`
 # Contributing
 Contributions are always welcome! If you'd like to contribute to Autify, please fork the repository and create a pull request with your changes.
