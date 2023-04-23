@@ -71,6 +71,30 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>io.swagger.codegen.v3</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>3.0.35</version>
+                <executions>
+                    <execution>
+                        <id>generate-spring-boot-server</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>src/main/resources/api/hello-api.yml</inputSpec>
+                            <language>spring</language>
+                            <configOptions>
+                                <sourceFolder>src/main/java</sourceFolder>
+                            </configOptions>
+                            <output>${project.build.directory}/generated-sources/swagger</output>
+                            <apiPackage>com.autify.be.api</apiPackage>
+                            <modelPackage>com.autify.be.model</modelPackage>
+                            <generateApiTests>false</generateApiTests>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
