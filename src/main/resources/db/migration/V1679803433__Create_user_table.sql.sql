@@ -1,5 +1,5 @@
 -- Table: role
-CREATE TABLE role
+/*CREATE TABLE role
 (
     id                INT          NOT NULL AUTO_INCREMENT,
     name              VARCHAR(255) NOT NULL,
@@ -7,22 +7,22 @@ CREATE TABLE role
     last_updated_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     last_updated_by   VARCHAR(255),
     PRIMARY KEY (id)
-);
+);*/
 -- Table: user
 CREATE TABLE user
 (
-    id                INT          NOT NULL AUTO_INCREMENT,
+    id                BIGINT          NOT NULL AUTO_INCREMENT,
     username          VARCHAR(255) NOT NULL,
     email             VARCHAR(255) NOT NULL,
     password          VARCHAR(255) NOT NULL,
-    role_id           INT          NOT NULL,
+    -- role_id           INT          NOT NULL,
     created_date      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_updated_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     last_updated_by   VARCHAR(255),
-    PRIMARY KEY (id),
-    FOREIGN KEY (role_id) REFERENCES role (id)
+    PRIMARY KEY (id)
+    -- FOREIGN KEY (role_id) REFERENCES role (id)
 );
--- Table: permission
+/*-- Table: permission
 CREATE TABLE permission
 (
     id                INT          NOT NULL AUTO_INCREMENT,
@@ -50,7 +50,7 @@ CREATE TABLE role_permission
 CREATE TABLE session
 (
     id                INT          NOT NULL AUTO_INCREMENT,
-    user_id           INT          NOT NULL,
+    user_id           BIGINT          NOT NULL,
     session_id        VARCHAR(255) NOT NULL,
     login_time        TIMESTAMP    NOT NULL,
     ip_address        VARCHAR(255) NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE session
 CREATE TABLE audit
 (
     id                INT          NOT NULL AUTO_INCREMENT,
-    user_id           INT          NOT NULL,
+    user_id           BIGINT          NOT NULL,
     action            VARCHAR(255) NOT NULL,
     created_date      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_updated_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -88,11 +88,11 @@ CREATE TABLE password_reset
 CREATE TABLE refresh_token
 (
     id                INT AUTO_INCREMENT PRIMARY KEY,
-    user_id           INT          NOT NULL,
+    user_id           BIGINT          NOT NULL,
     token             VARCHAR(255) NOT NULL,
     expiry_date       DATETIME     NOT NULL,
     created_date      DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     last_updated_date DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX             idx_refresh_token_user_id (user_id),
     FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
-);
+);*/

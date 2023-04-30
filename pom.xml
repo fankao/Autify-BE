@@ -77,6 +77,13 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>3.0.0</version>
         </dependency>
+
+        <!--Error handler -->
+        <dependency>
+            <groupId>io.github.wimdeblauwe</groupId>
+            <artifactId>error-handling-spring-boot-starter</artifactId>
+            <version>3.4.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -103,14 +110,18 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>src/main/resources/api/hello-api.yml</inputSpec>
+                            <inputSpec>src/main/resources/api/api.yml</inputSpec>
                             <language>spring</language>
                             <configOptions>
                                 <sourceFolder>src/main/java</sourceFolder>
                                 <dateLibrary>java8</dateLibrary>
+                                <useTags>true</useTags>
                             </configOptions>
+                            <output>${project.build.directory}/generated-sources</output>
                             <apiPackage>com.autify.be.api</apiPackage>
                             <modelPackage>com.autify.be.model</modelPackage>
+                            <invokerPackage>com.autify.be</invokerPackage>
+                            <modelNameSuffix>DTO</modelNameSuffix>
                             <generateApiTests>false</generateApiTests>
                             <ignoreFileOverride>src/main/resources/api/.swagger-codegen-ignore</ignoreFileOverride>
                         </configuration>

@@ -1,0 +1,11 @@
+{
+  "library": "spring-mvc",
+  "dateLibrary": "java8",
+  "hideGenerationTimestamp": true,
+  "modelPackage": "com.autify.be.api.model",
+  "apiPackage": "com.autify.be.api",
+  "invokerPackage": "com.autify.be.api",
+  "serializableModel": true,
+  "useTags": true,
+  "useGzipFeature" : true
+}
