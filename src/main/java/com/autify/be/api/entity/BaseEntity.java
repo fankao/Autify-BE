@@ -1,4 +1,4 @@
-package com.autify.be.entity;
+package com.autify.be.api.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

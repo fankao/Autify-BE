@@ -1,8 +1,8 @@
-package com.autify.be.controller;
+package com.autify.be.api.controller;
 
 import com.autify.be.api.UserApi;
 import com.autify.be.model.UserDTO;
-import com.autify.be.service.UserService;
+import com.autify.be.api.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
@@ -22,5 +22,10 @@ public class UserController implements UserApi {
     @Override
     public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO body){
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.create(body));
+    }
+
+    @Override
+    public ResponseEntity<UserDTO> updateUser(UserDTO body) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.update(body));
     }
 }
