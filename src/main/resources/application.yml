@@ -47,7 +47,9 @@ spring:
     baseline-version: 0
     # Baseline the database schema if no migrations have been applied yet
     baseline-on-migrate: true
-autify:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   security:
     jwtSecret: ${JWT_SECRET}
     jwtExpireTime: ${JWT_EXPIRATION}
