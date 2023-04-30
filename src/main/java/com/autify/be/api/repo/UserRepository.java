@@ -1,6 +1,6 @@
-package com.autify.be.repo;
+package com.autify.be.api.repo;
 
-import com.autify.be.entity.User;
+import com.autify.be.api.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

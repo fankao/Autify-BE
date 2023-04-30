@@ -2,6 +2,9 @@ openapi: 3.0.3
 info:
   title: User Management API
   version: 1.0.0
+servers:
+  - url: http://localhost:8090/autify/v1
+    description: Optional server description, e.g. Internal staging server for testing
 tags:
   - name: user
     description: Operations for users
@@ -29,6 +32,28 @@ paths:
                 $ref: '#/components/schemas/User'
         '400':
           description: Invalid input, user not added
+        '500':
+          description: Application Internal Error
+    put:
+      tags:
+        - user
+      operationId: updateUser
+      summary: Update existing user
+      requestBody:
+        description: User object to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/User'
 components:
   schemas:
     User:

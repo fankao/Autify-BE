@@ -1,4 +1,4 @@
-package com.autify.be;
+package com.autify.be.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
