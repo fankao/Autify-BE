@@ -33,15 +33,31 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO update(UserDTO body) {
-        if (userRepository.existsById(body.getId())) {
+        if (!userRepository.existsById(body.getId())) {
             throw new NotFoundException("User with Id " + body.getId() + " is not existing");
         }
         try {
-            userRepository.save(new User(body.getName(), body.getEmail(), body.getPassword()));
+            User user = new User(body.getName(), body.getEmail(), body.getPassword());
+            user.setId(body.getId());
+            userRepository.save(user);
             return body;
         } catch (Exception e) {
             log.error("update() --> {}", e.getMessage());
             throw new ApplicationInternalError(e.getMessage());
         }
+    }
+
+    @Override
+    public void deleteById(Long userId) {
+        if (!userRepository.existsById(userId)) {
+            throw new NotFoundException("User with Id " + userId + " is not existing");
+        }
+        try {
+            userRepository.deleteById(userId);
+        } catch (Exception e) {
+            log.error("deleteById() --> {}", e.getMessage());
+            throw new ApplicationInternalError(e.getMessage());
+        }
+
     }
 }
