@@ -3,13 +3,13 @@ info:
   title: User Management API
   version: 1.0.0
 servers:
-  - url: http://localhost:8090/autify/v1
+  - url: http://localhost:8090/autify
     description: Optional server description, e.g. Internal staging server for testing
 tags:
   - name: user
-    description: Operations for users
+    description: Operations for user.
 paths:
-  /api/v1/users:
+  /users:
     post:
       tags:
         - user
@@ -54,6 +54,24 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/User'
+  /users/{userId}:
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          description: The id that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '404':
+          description: User not found.
 components:
   schemas:
     User:

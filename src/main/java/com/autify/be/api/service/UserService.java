@@ -6,4 +6,6 @@ public interface UserService {
     UserDTO create(UserDTO body);
 
     UserDTO update(UserDTO body);
+
+    void deleteById(Long userId);
 }
