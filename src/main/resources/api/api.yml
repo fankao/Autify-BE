@@ -55,6 +55,30 @@ paths:
                 type: object
                 $ref: '#/components/schemas/User'
   /users/{userId}:
+    get:
+      tags:
+        - user
+      summary: Get user detail
+      description: This can only be done by the logged in user.
+      operationId: getUser
+      parameters:
+        - name: userId
+          in: path
+          description: The id that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Get User detail successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found.
     delete:
       tags:
         - user

@@ -34,4 +34,9 @@ public class UserController implements UserApi {
         userService.deleteById(userId);
         return ResponseEntity.noContent().build();
     }
+
+    @Override
+    public ResponseEntity<UserDTO> getUser(Long userId) {
+        return ResponseEntity.ok(userService.getUserById(userId));
+    }
 }

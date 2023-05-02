@@ -60,4 +60,12 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
+    @Override
+    public UserDTO getUserById(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User with Id " + userId + " is not existing"));
+        return new UserDTO()
+                .email(user.getEmail())
+                .name(user.getUserName());
+    }
 }

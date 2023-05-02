@@ -23,15 +23,11 @@ spring:
   jpa:
     hibernate:
       # DDL auto-generation strategy
-      ddl-auto: validate
+      ddl-auto:
     properties:
       hibernate:
         # MySQL dialect for Hibernate
         dialect: org.hibernate.dialect.MySQL8Dialect
-        # Show SQL statements in logs
-        show_sql: true
-        # Format SQL statements for readability
-        format_sql: true
 
   # Flyway database migration configuration
   flyway:
