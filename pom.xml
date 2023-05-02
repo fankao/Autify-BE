@@ -116,6 +116,9 @@
                                 <sourceFolder>src/main/java</sourceFolder>
                                 <dateLibrary>java8</dateLibrary>
                                 <useTags>true</useTags>
+                                <additionalModelTypeAnnotations>
+                                    @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+                                </additionalModelTypeAnnotations>
                             </configOptions>
                             <output>${project.build.directory}/generated-sources</output>
                             <apiPackage>com.autify.be.api</apiPackage>
