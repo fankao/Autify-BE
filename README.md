@@ -72,5 +72,21 @@ flyway:
 5. `audit`: Keeps track of changes made to user data, including who made the change and when.
 6. `password_reset`: Stores information about password reset requests, including the user's email address, the reset code, and when the request was made.
 7. `refresh_token`: Stores information about refresh tokens, including the token itself, the associated user ID, and the expiration time.
+## Role description
+**SUPER ADMIN:** This role has the highest level of permissions and can perform all actions in the application, including creating, editing, and deleting other users, roles, and permissions.
+
+**ADMIN:** This role has elevated permissions and can perform most actions in the application, except for creating or editing users with higher roles. They can manage users with lower roles, roles, and permissions.
+
+**MANAGER:** This role can manage lower-level users and their data. They can view, edit, and delete users with lower roles.
+
+**USER:** This is the standard role for regular users of the application. They have limited permissions and can only view and edit their own data.
+## Migration changelog
+1. **04/28/2023** - `V1679803433__create_user_table.sql`: contains the script to create the user table, which is required for issues 1, 2, 3, and 4.
+2. **05/02/2023** - `V1683034012__Create_role_table.sql`: contains the script to create the permission table, which is required for issues 5, 6, 7, 8, 9, and 10.
+3. `V3__create_role_permission_table.sql`: contains the script to create the role_permission table, which is required for issues 5, 6, 7, 8, 9, and 10.
+4. `V4__create_session_table.sql`: contains the script to create the session table, which is required for issues 12, 13, and 14.
+5. `V5__create_audit_table.sql`: contains the script to create the audit table, which is required for issues 15 and 16.
+6. `V6__create_password_reset_table.sql`: contains the script to create the password_reset table, which is required for issues 17 and 18.
+7. `V7__create_refresh_token_table.sql`: contains the script to create the refresh_token table, which is required for issues 21 and 22.
 # Contributing
 Contributions are always welcome! If you'd like to contribute to Autify, please fork the repository and create a pull request with your changes.
