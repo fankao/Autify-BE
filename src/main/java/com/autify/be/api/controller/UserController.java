@@ -25,7 +25,7 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public ResponseEntity<UserDTO> updateUser(UserDTO body) {
+    public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO body) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.update(body));
     }
 
