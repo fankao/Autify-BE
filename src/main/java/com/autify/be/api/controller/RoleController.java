@@ -19,4 +19,9 @@ public class RoleController implements RoleApi {
     public ResponseEntity<RoleDTO> createRole(@Valid @RequestBody RoleDTO body) {
         return ResponseEntity.status(HttpStatus.CREATED).body(roleService.create(body));
     }
+
+    @Override
+    public ResponseEntity<RoleDTO> updateRole(@Valid @RequestBody RoleDTO body) {
+        return ResponseEntity.ok(roleService.update(body));
+    }
 }
