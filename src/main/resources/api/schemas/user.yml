@@ -1,0 +1,16 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  name:
+    type: string
+  email:
+    type: string
+  password:
+    type: string
+required:
+  - name
+  - email
+  - password
+  
