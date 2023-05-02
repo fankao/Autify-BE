@@ -17,3 +17,22 @@ post:
         application/json:
           schema:
             $ref: '../schemas/role.yml'
+put:
+  tags:
+    - role
+  operationId: updateRole
+  summary: Update a existing role
+  requestBody:
+    description: Role object to be updated
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/role.yml'
+  responses:
+    200:
+      description: Role updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/role.yml'
