@@ -1,4 +1,0 @@
-User:
-  $ref: './user.yml'
-Role:
-  $ref: './role.yml'

@@ -59,25 +59,22 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <!--Dependencies for OAS api-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.6.15</version>
+        </dependency>
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
             <version>1.6.8</version>
         </dependency>
-        <!-- Springfox for generating OpenAPI 3.x documentation -->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.6</version>
         </dependency>
-
-        <!-- Springfox Swagger UI for displaying the generated documentation -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-
         <!--Error handler -->
         <dependency>
             <groupId>io.github.wimdeblauwe</groupId>
@@ -102,7 +99,7 @@
             <plugin>
                 <groupId>io.swagger.codegen.v3</groupId>
                 <artifactId>swagger-codegen-maven-plugin</artifactId>
-                <version>3.0.35</version>
+                <version>3.0.41</version>
                 <executions>
                     <execution>
                         <id>generate-spring-boot-server</id>
@@ -119,14 +116,20 @@
                                 <additionalModelTypeAnnotations>
                                     @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
                                 </additionalModelTypeAnnotations>
+                                <delegatePattern>true</delegatePattern>
+                                <interfaceOnly>true</interfaceOnly>
                             </configOptions>
                             <output>${project.build.directory}/generated-sources</output>
                             <apiPackage>com.autify.be.api</apiPackage>
                             <modelPackage>com.autify.be.model</modelPackage>
-                            <invokerPackage>com.autify.be</invokerPackage>
+                            <invokerPackage>com.autify.be.api</invokerPackage>
                             <modelNameSuffix>DTO</modelNameSuffix>
                             <generateApiTests>false</generateApiTests>
+                            <supportingFilesToGenerate>
+                                ApiUtil.java
+                            </supportingFilesToGenerate>
                             <ignoreFileOverride>src/main/resources/api/.swagger-codegen-ignore</ignoreFileOverride>
+                            <typeMappings>URI=URI,BigDecimal=BigDecimal,EntityModel=EntityModel</typeMappings>
                         </configuration>
                     </execution>
                 </executions>
@@ -134,7 +137,7 @@
                     <dependency>
                         <groupId>io.swagger.codegen.v3</groupId>
                         <artifactId>swagger-codegen-cli</artifactId>
-                        <version>3.0.35</version>
+                        <version>3.0.41</version>
                     </dependency>
                 </dependencies>
             </plugin>
