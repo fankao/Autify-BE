@@ -53,3 +53,7 @@ server:
   port: 8090
   servlet:
     context-path: /autify/api/v1
+
+error:
+  handling:
+    exception-logging: MESSAGE_ONLY

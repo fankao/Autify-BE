@@ -8,5 +8,7 @@ public interface RoleService {
 
     RoleDTO update(RoleDTO body);
 
-    void deleteById(Integer roleId);
+    void deleteById(Long roleId);
+
+    RoleDTO getRole(Long roleId);
 }
