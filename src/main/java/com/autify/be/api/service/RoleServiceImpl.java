@@ -42,4 +42,17 @@ public class RoleServiceImpl implements RoleService {
             throw new ApplicationInternalError(e.getMessage());
         }
     }
+
+    @Override
+    public void deleteById(Integer roleId) {
+        if (roleRepository.existsById(roleId)) {
+            throw new NotFoundException("Role with id " + roleId + " not found");
+        }
+        try {
+           roleRepository.deleteById(roleId);
+        } catch (Exception e) {
+            log.info("delete() >> {}", e.getMessage());
+            throw new ApplicationInternalError(e.getMessage());
+        }
+    }
 }

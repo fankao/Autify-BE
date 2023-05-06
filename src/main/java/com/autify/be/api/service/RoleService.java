@@ -7,4 +7,6 @@ public interface RoleService {
     RoleDTO create(RoleDTO body);
 
     RoleDTO update(RoleDTO body);
+
+    void deleteById(Integer roleId);
 }

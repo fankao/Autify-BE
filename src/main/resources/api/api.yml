@@ -12,11 +12,13 @@ tags:
     description: Operations for role.
 paths:
   /users:
-    $ref: './path/users.yml'
+    $ref: './paths/users.yml'
   /users/{userId}:
-    $ref: './path/user.yml'
+    $ref: './paths/user.yml'
   /roles:
-    $ref: './path/roles.yml'
+    $ref: './paths/roles.yml'
+  /role/{roleId}:
+    $ref: './paths/role.yml'
 components:
   schemas:
     $ref: './schemas/_index.yml'

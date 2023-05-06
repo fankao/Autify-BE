@@ -1,0 +1,16 @@
+delete:
+  tags:
+    - role
+  summary: Delete role
+  description: This can only be done by the logged in user.
+  operationId: deleteRole
+  parameters:
+    - name: roleId
+      in: path
+      description: The id that needs to be deleted
+      required: true
+      schema:
+        type: integer
+  responses:
+    '404':
+      description: Role not found.
