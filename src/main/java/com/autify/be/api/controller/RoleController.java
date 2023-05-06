@@ -26,8 +26,13 @@ public class RoleController implements RoleApi {
     }
 
     @Override
-    public ResponseEntity<Void> deleteRole(Integer roleId) {
+    public ResponseEntity<Void> deleteRole(Long roleId) {
         roleService.deleteById(roleId);
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.noContent().build();
+    }
+
+    @Override
+    public ResponseEntity<RoleDTO> getRole(Long roleId) {
+        return ResponseEntity.ok(roleService.getRole(roleId));
     }
 }

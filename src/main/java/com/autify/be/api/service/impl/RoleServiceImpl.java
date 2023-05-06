@@ -1,10 +1,11 @@
-package com.autify.be.api.service;
+package com.autify.be.api.service.impl;
 
 import com.autify.be.api.entity.Role;
 import com.autify.be.api.exceptions.ApplicationInternalError;
 import com.autify.be.api.exceptions.BadRequestException;
 import com.autify.be.api.exceptions.NotFoundException;
 import com.autify.be.api.repo.RoleRepository;
+import com.autify.be.api.service.RoleService;
 import com.autify.be.model.RoleDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,7 @@ public class RoleServiceImpl implements RoleService {
                 .orElseThrow(() -> new NotFoundException("Role not found"));
         try {
             existedRole.setName(body.getName());
+            roleRepository.save(existedRole);
             return body;
         } catch (Exception e) {
             log.info("update() >> {}", e.getMessage());
@@ -44,8 +46,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void deleteById(Integer roleId) {
-        if (roleRepository.existsById(roleId)) {
+    public void deleteById(Long roleId) {
+        if (!roleRepository.existsById(roleId)) {
             throw new NotFoundException("Role with id " + roleId + " not found");
         }
         try {
@@ -54,5 +56,12 @@ public class RoleServiceImpl implements RoleService {
             log.info("delete() >> {}", e.getMessage());
             throw new ApplicationInternalError(e.getMessage());
         }
+    }
+
+    @Override
+    public RoleDTO getRole(Long roleId) {
+        Role existedRole = roleRepository.findById(roleId)
+                .orElseThrow(() -> new NotFoundException("Role not found"));
+        return new RoleDTO().name(existedRole.getName());
     }
 }

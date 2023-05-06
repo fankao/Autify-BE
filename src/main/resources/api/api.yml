@@ -17,7 +17,7 @@ paths:
     $ref: './paths/user.yml'
   /roles:
     $ref: './paths/roles.yml'
-  /role/{roleId}:
+  /roles/{roleId}:
     $ref: './paths/role.yml'
 components:
   schemas:
