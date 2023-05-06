@@ -3,7 +3,7 @@ info:
   title: User Management API
   version: 1.0.0
 servers:
-  - url: http://localhost:8090/autify
+  - url: http://localhost:8090/autify/api/v1
     description: Optional server description, e.g. Internal staging server for testing
 tags:
   - name: user
@@ -12,13 +12,194 @@ tags:
     description: Operations for role.
 paths:
   /users:
-    $ref: './paths/users.yml'
+    post:
+      tags:
+        - user
+      operationId: createUser
+      summary: Add a new user
+      requestBody:
+        description: User object to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input, user not added
+        '500':
+          description: Application Internal Error
+    put:
+      tags:
+        - user
+      operationId: updateUser
+      summary: Update existing user
+      requestBody:
+        description: User object to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
   /users/{userId}:
-    $ref: './paths/user.yml'
+    get:
+      tags:
+        - user
+      summary: Get user detail
+      description: This can only be done by the logged in user.
+      operationId: getUser
+      parameters:
+        - name: userId
+          in: path
+          description: The id that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Get User detail successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found.
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          description: The id that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '404':
+          description: User not found.
   /roles:
-    $ref: './paths/roles.yml'
+    post:
+      tags:
+        - role
+      operationId: createRole
+      summary: Add a new role
+      requestBody:
+        description: Role object to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        201:
+          description: Role created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+    put:
+      tags:
+        - role
+      operationId: updateRole
+      summary: Update a existing role
+      requestBody:
+        description: Role object to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        200:
+          description: Role updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
   /roles/{roleId}:
-    $ref: './paths/role.yml'
+    delete:
+      tags:
+        - role
+      summary: Delete role
+      description: This can only be done by the logged in user.
+      operationId: deleteRole
+      parameters:
+        - name: roleId
+          in: path
+          description: The id that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '404':
+          description: Role not found.
+    get:
+      tags:
+        - role
+      summary: Get role detail
+      description: This can only be done by the logged in user.
+      operationId: getRole
+      parameters:
+        - name: roleId
+          in: path
+          description: The id that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Get Role detail successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '404':
+          description: Role not found.
 components:
   schemas:
-    $ref: './schemas/_index.yml'
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - name
+        - email
+        - password
+    Role:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      required:
+        - name
