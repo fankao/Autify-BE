@@ -1,4 +1,4 @@
-package com.autify.be.api.entity;
+package com.autify.be.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

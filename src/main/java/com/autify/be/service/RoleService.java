@@ -1,4 +1,4 @@
-package com.autify.be.api.service;
+package com.autify.be.service;
 
 import com.autify.be.model.RoleDTO;
 

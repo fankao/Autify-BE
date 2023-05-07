@@ -1,6 +1,6 @@
-package com.autify.be.api.repo;
+package com.autify.be.repo;
 
-import com.autify.be.api.entity.Role;
+import com.autify.be.entity.Role;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

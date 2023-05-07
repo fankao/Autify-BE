@@ -1,11 +1,11 @@
-package com.autify.be.api.service.impl;
+package com.autify.be.service.impl;
 
-import com.autify.be.api.entity.Role;
-import com.autify.be.api.exceptions.ApplicationInternalError;
-import com.autify.be.api.exceptions.BadRequestException;
-import com.autify.be.api.exceptions.NotFoundException;
-import com.autify.be.api.repo.RoleRepository;
-import com.autify.be.api.service.RoleService;
+import com.autify.be.entity.Role;
+import com.autify.be.exceptions.ApplicationInternalError;
+import com.autify.be.exceptions.BadRequestException;
+import com.autify.be.exceptions.NotFoundException;
+import com.autify.be.repo.RoleRepository;
+import com.autify.be.service.RoleService;
 import com.autify.be.model.RoleDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

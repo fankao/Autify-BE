@@ -9,7 +9,7 @@ CREATE TABLE permission
     PRIMARY KEY (id)
 );
 
---Create predefined permissions for application
+-- Create predefined permissions for application
 INSERT INTO permission (name, created_date, last_updated_date, last_updated_by)
 VALUES
     ('CREATE_USER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'ADMIN'),
