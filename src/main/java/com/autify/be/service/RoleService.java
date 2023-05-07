@@ -11,4 +11,10 @@ public interface RoleService {
     void deleteById(Long roleId);
 
     RoleDTO getRole(Long roleId);
+
+    RoleDTO assignPermission(Long roleId, Long permissionId);
+
+    RoleDTO removeAssignedPermission(Long roleId, Long permissionId);
+
+    RoleDTO getPermissions(Long roleId);
 }

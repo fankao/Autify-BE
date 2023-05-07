@@ -1,8 +1,6 @@
 package com.autify.be.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +8,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class User extends BaseEntity {
     @Column(name = "username")

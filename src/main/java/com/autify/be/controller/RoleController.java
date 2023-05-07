@@ -38,16 +38,16 @@ public class RoleController implements RoleApi {
 
     @Override
     public ResponseEntity<RoleDTO> getOwnedPermissions(Long roleId) {
-        return RoleApi.super.getOwnedPermissions(roleId);
+        return ResponseEntity.ok(roleService.getPermissions(roleId));
     }
 
     @Override
     public ResponseEntity<RoleDTO> assignPermission(Long roleId, Long permissionId) {
-        return RoleApi.super.assignPermission(roleId, permissionId);
+        return ResponseEntity.ok(roleService.assignPermission(roleId,permissionId));
     }
 
     @Override
     public ResponseEntity<RoleDTO> removeAssignedPermission(Long roleId, Long permissionId) {
-        return RoleApi.super.removeAssignedPermission(roleId, permissionId);
+        return ResponseEntity.ok(roleService.removeAssignedPermission(roleId, permissionId));
     }
 }
