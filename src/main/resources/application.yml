@@ -59,6 +59,7 @@ server:
     enabled: ${HTTP2_ENABLE:false}
   forward-headers-strategy: ${HEADER_STRATEGY:none}
 springdoc:
-
+  api-docs:
+    path: /
   swagger-ui:
     path: /api-docs
