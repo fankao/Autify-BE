@@ -55,6 +55,9 @@ server:
   port: 8090
   servlet:
     context-path: /autify/api/v1
+  http2:
+    enabled: ${HTTP2_ENABLE:false}
+  forward-headers-strategy: ${HEADER_STRATEGY:none}
 springdoc:
 
   swagger-ui:
