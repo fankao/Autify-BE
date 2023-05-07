@@ -63,3 +63,6 @@ springdoc:
     path: /
   swagger-ui:
     path: /api-docs
+  cache:
+    disabled: true
+  show-actuator: true
