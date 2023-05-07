@@ -1,14 +1,41 @@
-# Use the official OpenJDK base image
-FROM openjdk:17
+# Stage 1: Build Stage
+FROM eclipse-temurin:17-jdk-alpine as build
 
-# Set the working directory in the container
-WORKDIR /app
+# Set the working directory for the build stage
+WORKDIR /workspace/app
 
-# Copy the JAR file into the container
-COPY target/Autify-BE-0.0.1-SNAPSHOT.jar app.jar
+# Copy the Maven wrapper files
+COPY mvnw .
+COPY .mvn .mvn
 
-# Expose the port that the application listens on
-EXPOSE 8080
+# Copy the project's POM file
+COPY pom.xml .
 
-# Set the entrypoint command to run the application when the container starts
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Copy the application source code
+COPY src src
+
+# Build the project with Maven, skipping tests
+RUN ./mvnw install -DskipTests
+
+# Create a directory for application dependencies and extract them from the built JAR file
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+
+
+# Stage 2: Run Stage
+FROM eclipse-temurin:17-jdk-alpine
+
+# Set the volume directory for temporary files
+VOLUME /tmp
+
+# Set the location of the application dependencies from the build stage
+ARG DEPENDENCY=/workspace/app/target/dependency
+
+# Copy the application dependencies to the target directory
+COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
+
+# Copy the application class files to the target directory
+COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
+
+# Set the entry point for running the application
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.autify.be.AutifyBeApplication"]
