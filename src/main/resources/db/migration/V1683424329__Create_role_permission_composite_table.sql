@@ -6,7 +6,8 @@ CREATE TABLE role_permission
     created_date      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_updated_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     last_updated_by   VARCHAR(255),
-    PRIMARY KEY (role_id, permission_id),
-    FOREIGN KEY (role_id) REFERENCES role (id),
-    FOREIGN KEY (permission_id) REFERENCES permission (id)
+    PRIMARY KEY (role_id, permission_id)
 );
+ALTER TABLE role_permission
+    ADD CONSTRAINT FK_role_permission_role FOREIGN KEY (role_id) REFERENCES role(id),
+    ADD CONSTRAINT FK_role_permission_permission FOREIGN KEY (permission_id) REFERENCES permission(id);
