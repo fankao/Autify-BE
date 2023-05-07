@@ -39,7 +39,7 @@ COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 # Copy the application class files to the target directory
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
-EXPOSE 8080
+EXPOSE 8080/tcp
 
 # Set the entry point for running the application
 ENTRYPOINT ["java","-cp","app:app/lib/*","com.autify.be.AutifyBeApplication"]
