@@ -56,5 +56,6 @@ server:
   servlet:
     context-path: /autify/api/v1
 springdoc:
+
   swagger-ui:
     path: /api-docs
