@@ -1,7 +1,7 @@
-package com.autify.be.api.controller;
+package com.autify.be.controller;
 
 import com.autify.be.api.RoleApi;
-import com.autify.be.api.service.RoleService;
+import com.autify.be.service.RoleService;
 import com.autify.be.model.RoleDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,5 +34,20 @@ public class RoleController implements RoleApi {
     @Override
     public ResponseEntity<RoleDTO> getRole(Long roleId) {
         return ResponseEntity.ok(roleService.getRole(roleId));
+    }
+
+    @Override
+    public ResponseEntity<RoleDTO> getOwnedPermissions(Long roleId) {
+        return ResponseEntity.ok(roleService.getPermissions(roleId));
+    }
+
+    @Override
+    public ResponseEntity<RoleDTO> assignPermission(Long roleId, Long permissionId) {
+        return ResponseEntity.ok(roleService.assignPermission(roleId,permissionId));
+    }
+
+    @Override
+    public ResponseEntity<RoleDTO> removeAssignedPermission(Long roleId, Long permissionId) {
+        return ResponseEntity.ok(roleService.removeAssignedPermission(roleId, permissionId));
     }
 }

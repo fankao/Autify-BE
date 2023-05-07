@@ -116,7 +116,6 @@
                                 <additionalModelTypeAnnotations>
                                     @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
                                 </additionalModelTypeAnnotations>
-                                <delegatePattern>true</delegatePattern>
                                 <interfaceOnly>true</interfaceOnly>
                             </configOptions>
                             <output>${project.build.directory}/generated-sources</output>

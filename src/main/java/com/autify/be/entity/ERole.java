@@ -1,4 +1,4 @@
-package com.autify.be.api.entity;
+package com.autify.be.entity;
 
 public enum ERole {
     SUPER_ADMIN,

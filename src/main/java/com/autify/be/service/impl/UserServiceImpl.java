@@ -1,12 +1,12 @@
-package com.autify.be.api.service.impl;
+package com.autify.be.service.impl;
 
-import com.autify.be.api.entity.User;
-import com.autify.be.api.exceptions.ApplicationInternalError;
-import com.autify.be.api.exceptions.BadRequestException;
-import com.autify.be.api.exceptions.NotFoundException;
+import com.autify.be.entity.User;
+import com.autify.be.exceptions.ApplicationInternalError;
+import com.autify.be.exceptions.BadRequestException;
+import com.autify.be.exceptions.NotFoundException;
 import com.autify.be.model.UserDTO;
-import com.autify.be.api.repo.UserRepository;
-import com.autify.be.api.service.UserService;
+import com.autify.be.repo.UserRepository;
+import com.autify.be.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
-package com.autify.be.api.controller;
+package com.autify.be.controller;
 
 import com.autify.be.api.UserApi;
 import com.autify.be.model.UserDTO;
-import com.autify.be.api.service.UserService;
+import com.autify.be.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;

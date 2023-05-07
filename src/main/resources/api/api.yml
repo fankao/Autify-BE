@@ -175,6 +175,99 @@ paths:
                 $ref: '#/components/schemas/Role'
         '404':
           description: Role not found.
+  /roles/{roleId}/permissions:
+    get:
+      tags:
+        - role
+      operationId: getOwnedPermissions
+      summary: Get owned permissions of role
+      parameters:
+        - name: roleId
+          in: path
+          description: The role id that needs to be get permissions
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Get permissions successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '404':
+          description: Role not found
+        '400':
+          description: Invalid input, user not added
+        '500':
+          description: Application Internal Error
+  /roles/{roleId}/permissions/{permissionId}:
+    post:
+      tags:
+        - role
+      operationId: assignPermission
+      summary: Assign permission for specific role
+      parameters:
+        - name: roleId
+          in: path
+          description: The role id that needs to be assigned permission
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: permissionId
+          in: path
+          description: The permission id that need to be assigned
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Permission assigned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '404':
+          description: Permission or Role not found
+        '400':
+          description: Invalid input, user not added
+        '500':
+          description: Application Internal Error
+    delete:
+      tags:
+        - role
+      operationId: removeAssignedPermission
+      summary: Remove Assigned permission from specific role
+      parameters:
+        - name: roleId
+          in: path
+          description: The role id that needs to be removed assigned permission
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: permissionId
+          in: path
+          description: The assigned permission id that need to be removed
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Permission removed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '404':
+          description: Permission or Role not found
+        '400':
+          description: Invalid input, user not added
+        '500':
+          description: Application Internal Error
 components:
   schemas:
     User:
@@ -201,5 +294,9 @@ components:
           format: int64
         name:
           type: string
+        permissions:
+          type: array
+          items:
+            - format: string
       required:
         - name
