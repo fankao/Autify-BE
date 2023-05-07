@@ -3,7 +3,7 @@ FROM eclipse-temurin:17-jdk-alpine as build
 
 # Set the working directory for the build stage
 WORKDIR /workspace/app
-
+RUN chmod +x mvnw
 # Copy the Maven wrapper files
 COPY mvnw .
 COPY .mvn .mvn
