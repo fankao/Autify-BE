@@ -21,4 +21,14 @@ public class Session extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Session(String sessionId, Timestamp loginTime, String ipAddress) {
+        this.sessionId = sessionId;
+        this.loginTime = loginTime;
+        this.ipAddress = ipAddress;
+    }
+    public void addSession(User user){
+        this.setUser(user);
+        user.getSessions().add(this);
+    }
 }

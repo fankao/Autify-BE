@@ -75,6 +75,16 @@
             <artifactId>jackson-databind-nullable</artifactId>
             <version>0.2.6</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.14.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.14.2</version>
+        </dependency>
         <!--Error handler -->
         <dependency>
             <groupId>io.github.wimdeblauwe</groupId>
@@ -114,12 +124,11 @@
                             <inputSpec>src/main/resources/api/api.yml</inputSpec>
                             <language>spring</language>
                             <configOptions>
+                                <java8>true</java8>
                                 <sourceFolder>src/main/java</sourceFolder>
-                                <dateLibrary>java8</dateLibrary>
+                                <dateLibrary>custom</dateLibrary>
                                 <useTags>true</useTags>
-                                <additionalModelTypeAnnotations>
-                                    @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-                                </additionalModelTypeAnnotations>
+                                <openApiNullable>false</openApiNullable>
                                 <interfaceOnly>true</interfaceOnly>
                             </configOptions>
                             <output>${project.build.directory}/generated-sources</output>
@@ -128,11 +137,11 @@
                             <invokerPackage>com.autify.be.api</invokerPackage>
                             <modelNameSuffix>DTO</modelNameSuffix>
                             <generateApiTests>false</generateApiTests>
-                            <supportingFilesToGenerate>
-                                ApiUtil.java
-                            </supportingFilesToGenerate>
                             <ignoreFileOverride>src/main/resources/api/.swagger-codegen-ignore</ignoreFileOverride>
-                            <typeMappings>URI=URI,BigDecimal=BigDecimal,EntityModel=EntityModel</typeMappings>
+                            <importMappings>
+                                Instant=java.time.Instant
+                            </importMappings>
+                            <typeMappings>URI=URI,BigDecimal=BigDecimal,EntityModel=EntityModel,DateTime=Instant</typeMappings>
                         </configuration>
                     </execution>
                 </executions>
