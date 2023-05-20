@@ -83,8 +83,8 @@ flyway:
 ## Migration changelog
 1. **04/28/2023** - `V1679803433__create_user_table.sql`: contains the script to create the user table, which is required for issues 1, 2, 3, and 4.
 2. **05/02/2023** - `V1683034012__Create_role_table.sql`: contains the script to create the permission table, which is required for issues 5, 6, 7, 8, 9, and 10.
-3.  **05/07/2023** - `V1683424141__Create_permission_table.sql`, `V1683424329__Create_role_permission_composite_table.sql`: contains the script to create the permission and role_permission tables, which is required for issues 5, 6, 7, 8, 9, and 10.
-4. `V4__create_session_table.sql`: contains the script to create the session table, which is required for issues 12, 13, and 14.
+3. **05/07/2023** - `V1683424141__Create_permission_table.sql`, `V1683424329__Create_role_permission_composite_table.sql`: contains the script to create the permission and role_permission tables, which is required for issues 5, 6, 7, 8, 9, and 10.
+4. **05/14/2023** - `V1684036191__create_session_table.sql`: contains the script to create the session table, which is required for issues 12, 13, and 14.
 5. `V5__create_audit_table.sql`: contains the script to create the audit table, which is required for issues 15 and 16.
 6. `V6__create_password_reset_table.sql`: contains the script to create the password_reset table, which is required for issues 17 and 18.
 7. `V7__create_refresh_token_table.sql`: contains the script to create the refresh_token table, which is required for issues 21 and 22.

@@ -10,6 +10,8 @@ tags:
     description: Operations for user.
   - name: role
     description: Operations for role.
+  - name: session
+    description: Operations for session.
 paths:
   /users:
     post:
@@ -268,6 +270,34 @@ paths:
           description: Invalid input, user not added
         '500':
           description: Application Internal Error
+  /sessions/login:
+      post:
+        tags:
+          - session
+        operationId: trackingLogin
+        summary: Tracking user login
+        parameters:
+          - name: clientIp
+            description: Client IP address
+            in: header
+            required: false
+            schema:
+              type: string
+              default: 0.0.0.0
+        requestBody:
+          description: Session
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginRequest'
+        responses:
+          '200':
+            description: Track user login successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Session'
 components:
   schemas:
     User:
@@ -300,3 +330,24 @@ components:
             - format: string
       required:
         - name
+    Session:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        loginTime:
+          type: string
+        ipAddress:
+          type: string
+        userId:
+          type: integer
+          format: int64
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+
